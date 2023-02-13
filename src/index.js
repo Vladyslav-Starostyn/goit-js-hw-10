@@ -35,7 +35,7 @@ function onInputSearch(event) {
         return;
       }
     })
-    .catch(() => Notify.failure('Oops, there is no country with that name'));
+    .catch(error => console.log(error));
 }
 
 function renderCardList(countries) {
