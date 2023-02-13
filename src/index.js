@@ -8,17 +8,13 @@ const listEl = document.querySelector('.country-list');
 const countryEl = document.querySelector('.country-info');
 const DEBOUNCE_DELAY = 300;
 
-console.log(inputEl);
-console.log(listEl);
-console.log(countryEl);
-
 inputEl.addEventListener('input', debounce(onInputSearch, DEBOUNCE_DELAY));
 
 function onInputSearch(event) {
   const inputValue = event.target.value.trim();
   console.log(inputValue);
 
-  //clearHtml();
+  clearHtml();
 
   if (inputValue === '') {
     return;
