@@ -12,7 +12,6 @@ inputEl.addEventListener('input', debounce(onInputSearch, DEBOUNCE_DELAY));
 
 function onInputSearch(event) {
   const inputValue = event.target.value.trim();
-  console.log(inputValue);
 
   clearHtml();
 
@@ -20,21 +19,23 @@ function onInputSearch(event) {
     return;
   }
   const dataCountry = fetchCountries(inputValue);
-  dataCountry.then(response => {
-    if (response.length > 10) {
-      Notify.info(`Too many matches found. Please enter a more specific name.`);
-      return;
-    }
-    if (response.length <= 10 && response.length >= 2) {
-      renderCardList(response);
-    }
-    if (response.length === 1) {
-      renderCardCountry(response);
-      return;
-    } else {
-      Notify.failure('Oops, there is no country with that name');
-    }
-  });
+  dataCountry
+    .then(response => {
+      if (response.length > 10) {
+        Notify.info(
+          `Too many matches found. Please enter a more specific name.`
+        );
+        return;
+      }
+      if (response.length <= 10 && response.length >= 2) {
+        renderCardList(response);
+      }
+      if (response.length === 1) {
+        renderCardCountry(response);
+        return;
+      }
+    })
+    .catch(() => Notify.failure('Oops, there is no country with that name'));
 }
 
 function renderCardList(countries) {
