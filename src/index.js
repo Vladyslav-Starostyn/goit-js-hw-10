@@ -41,8 +41,8 @@ function onInputSearch(event) {
 function renderCardList(countries) {
   const markup = countries
     .map(country => {
-      return `<img src="${country.flags.svg}" alt="Flag of ${country.name.official}" width="40" >
-         <p>${country.name.official}</p>`;
+      return `<li class = "list-js"><img src="${country.flags.svg}" alt="Flag of ${country.name.official}" width="40" >
+         <span class="country-name">${country.name.official}</span></li>`;
     })
     .join('');
   listEl.innerHTML = markup;
